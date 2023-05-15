@@ -5,6 +5,7 @@ import ch.qos.logback.core.joran.spi.NoAutoStart;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @NoArgsConstructor
 @Builder
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
 public class MemberDto {
 
     @NotNull
-    private int num;
+    private long num;
 
     @NotNull
     private String name;
@@ -22,5 +23,8 @@ public class MemberDto {
     @NotNull
     private int score;
 
+    public static MemberDto from(long num, String name, int score) {
+        return new MemberDto(num, name, score);
+    }
 
 }
