@@ -5,11 +5,9 @@ import com.example.embeddedtest.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -38,7 +36,7 @@ public class HelloController {
      * map 초기화... 어케 할 지 몰라서 따로 api 만듦...
      * @return
      */
-    @GetMapping("api/hello4")
+    @GetMapping("/api/hello4")
     public ResponseEntity<String> Hello4() {
         memberService.init();
         return new ResponseEntity<>("Start", HttpStatus.OK);
@@ -49,7 +47,7 @@ public class HelloController {
      * @param map
      * @return
      */
-    @PostMapping("api/hello5")
+    @PostMapping("/api/hello5")
     public ResponseEntity Hello5(@RequestBody LinkedHashMap map) {
 
         memberService.join(map.get("name").toString());
@@ -57,9 +55,16 @@ public class HelloController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("api/hello6")
+    @GetMapping("/api/hello6")
     public ResponseEntity<List<MemberDto>> Hello6() {
-
         return new ResponseEntity<>(memberService.findTop10List(), HttpStatus.OK);
     }
+
+    @PostMapping("/api/hello7")
+    public String Hello7(@RequestBody String name) {
+        System.out.println(name);
+        return "성공";
+    }
 }
+
+
