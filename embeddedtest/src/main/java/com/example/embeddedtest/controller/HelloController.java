@@ -63,7 +63,7 @@ public class HelloController {
     @PostMapping("/api/hello7")
     public String Hello7(@RequestBody String name) {
         System.out.println(name);
-        return "성공";
+        return name;
     }
 }
 
